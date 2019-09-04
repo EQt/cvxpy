@@ -27,6 +27,7 @@ install:
     - ps: $env:path="$env:MINICONDA_DIR;$env:MINICONDA_DIR\Scripts;$env:MINICONDA_DIR\Library\bin;$($env:path)"
     - ps: echo $env:path
     - cmd: conda update --yes --quiet conda
+    - cmd: conda install --yes -n root conda conda-env anaconda-client
     - "powershell continuous_integration\\AppVeyor\\configure_conda_and_install_cvxpy.ps1"
 
 # Not a .NET project, we build CVXPY in the install step instead.
