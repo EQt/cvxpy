@@ -1,18 +1,19 @@
 #  see: https://www.appveyor.com/docs/build-environment/#build-vm-configurations
 #  for details on the AppVeyor build VM configurations
 environment:
-    global:
-          PYTHON: "C:\\conda"
-          MINICONDA_FILENAME: "Miniconda3-latest-Windows-x86_64.exe"
     matrix:
           - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
             PYTHON_VERSION: "3.5"
+            MINICONDA_DIR: "C:\Miniconda35-x64"
           - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
             PYTHON_VERSION: "3.6"
+            MINICONDA_DIR: "C:\Miniconda36-x64"
           - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
             PYTHON_VERSION: "3.7"
+            MINICONDA_DIR: "C:\Miniconda36-x64"
           - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
             PYTHON_VERSION: "3.7"
+            MINICONDA_DIR: "C:\Miniconda37-x64"
 
 
 # SCS is a required solver, and it has no 32 bit distribution
@@ -22,7 +23,9 @@ platform:
 
 # The install phase is contained in two PowerShell scripts.
 install:
-    - "powershell continuous_integration\\AppVeyor\\download_and_install_miniconda.ps1"
+    - ps: $env:path="$MINICONDA_DIR;$MINICONDA_DIR\Scripts;$MINICONDA_DIR\Library\bin;$($env:path)"
+    - ps: echo $env:path
+    - cmd: conda update --yes --quiet conda
     - "powershell continuous_integration\\AppVeyor\\configure_conda_and_install_cvxpy.ps1"
 
 # Not a .NET project, we build CVXPY in the install step instead.
