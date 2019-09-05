@@ -2,18 +2,18 @@
 #  for details on the AppVeyor build VM configurations
 environment:
     matrix:
-          - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-            PYTHON_VERSION: "3.5"
-            MINICONDA_DIR: "C:\\Miniconda3-x64"    # Miniconda35-x64 seems broken
-          - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-            PYTHON_VERSION: "3.6"
-            MINICONDA_DIR: "C:\\Miniconda36-x64"
-          - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
-            PYTHON_VERSION: "3.7"
-            MINICONDA_DIR: "C:\\Miniconda36-x64"
-          - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
-            PYTHON_VERSION: "3.7"
-            MINICONDA_DIR: "C:\\Miniconda37-x64"
+        - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+          PYTHON_VERSION: "3.5"
+          MINICONDA_DIR: "C:\\Miniconda3-x64"    # Miniconda35-x64 seems broken
+        - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+          PYTHON_VERSION: "3.6"
+          MINICONDA_DIR: "C:\\Miniconda36-x64"
+        - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
+          PYTHON_VERSION: "3.7"
+          MINICONDA_DIR: "C:\\Miniconda36-x64"
+        - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+          PYTHON_VERSION: "3.7"
+          MINICONDA_DIR: "C:\\Miniconda37-x64"
 
 
 # SCS is a required solver, and it has no 32 bit distribution
