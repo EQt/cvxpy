@@ -24,10 +24,12 @@ platform:
 # The install phase is contained in two PowerShell scripts.
 install:
     - ps: echo $env:MINICONDA_DIR
-    - ps: $env:path="$env:MINICONDA_DIR;$env:MINICONDA_DIR\Scripts;$env:MINICONDA_DIR\Library\bin;$($env:path)"
     - ps: echo $env:path
-    - cmd: conda update --yes --quiet conda
-    - cmd: conda install --yes -n root conda conda-env anaconda-client
+    - ps: $env:path="$env:MINICONDA_DIR;$env:MINICONDA_DIR\Scripts;$env:MINICONDA_DIR\Library\bin;$($env:path)"
+    - cmd: '"%MINICONDA_DIR%\Scripts\activate.bat"'
+    - cmd: conda config --set always_yes yes --set changeps1 no
+    - cmd: conda update --quiet conda
+    - cmd: conda install -n root conda conda-env anaconda-client
     - "powershell continuous_integration\\AppVeyor\\configure_conda_and_install_cvxpy.ps1"
 
 # Not a .NET project, we build CVXPY in the install step instead.
